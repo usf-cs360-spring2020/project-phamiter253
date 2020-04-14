@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="prototype.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Prototype Implementation</span>
+              </a>
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Final Implementation</span>
+              </a>
+
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container" >
+      <!-- Begin page content -->
+     
+      <!-- <section class="hero is-medium">
+        <div style="background-image:url('header.jpg'); background-size: cover">
+        <div class="hero-body">
+          
+          <div class="container">
+            <h1 class="title" style="color: white; text-shadow: 3px 3px 0px black">
+              MyAnimeList Dataset
+            </h1>
+            <h2 class="subtitle" style="color: white; text-shadow: 3px 3px 0px black">
+              contains 300k users, 14k anime metadata, and 80mil. ratings from MyAnimeList.net
+            </h2>
+          </div>
+        </div>
+        </div>
+
+        <div class="content" style="margin: 50px">
+
+          <p class="title">Context</p>
+          <p style="font-size: 20px">This dataset contains data about the animes and users listed in the database MyAnimeList.net </p>
+
+           <blockquote>
+              <p>
+                "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="https://opendatacommons.org/licenses/dbcl/1.0/">www.opendatacommons.org/licenses/dbcl/1.0/</a>"
+              </p>
+              <cite>Put a citation here, possibly link to the dataset license information directly.</cite>
+            </blockquote>
+
+          <p class="subtitle">Files Utilized from this Dataset</p>
+          <p class="title">anime_cleaned.csv</p>
+          <p>Relevant Columns</p>
+          <ol>
+            <li>
+              <strong>anime_id: </strong>
+            </li>
+            <li>
+              <strong>title: </strong>
+            </li>
+            <li>
+              <strong>image_url: </strong>
+            </li>
+            <li>
+              <strong>type: </strong>
+            </li>
+            <li>
+              <strong>episode: </strong>
+            </li>
+            <li>
+              <strong>aired_string: </strong>
+            </li>
+            <li>
+              <strong>rating: </strong>
+            </li>
+            <li>
+              <strong>score: </strong>
+            </li>
+            <li>
+              <strong>scored_by: </strong>
+            </li>
+            <li>
+              <strong>rank: </strong>
+            </li>
+            <li>
+              <strong>favorites: </strong>
+            </li>
+            <li>
+              <strong>producer: </strong>
+            </li>
+            <li>
+              <strong>studio: </strong>
+            </li>
+            <li>
+              <strong>genre: </strong>
+            </li>
+            <li>
+              <strong>duration_min: </strong>
+            </li>
+            <li>
+              <strong>aired_from_year: </strong>
+            </li>
+          </ol>
+
+          <div class="table-container">
+            <table class="table is-hoverable is-bordered">
+              <thead>
+                <tr>
+                  <th class="is-selected">anime_id</th>
+                  <th class="is-selected">title</th>
+                  <th>title_english</th>
+                  <th>title_japanese</th>
+                  <th>title_synonyms</th>
+                  <th class="is-selected">image_url</th>
+                  <th class="is-selected">type</th>
+                  <th>source</th>
+                  <th class="is-selected">episodes</th>
+                  <th>status</th>
+                  <th>airing</th>
+                  <th class="is-selected">aired_string</th>
+                  <th>aired</th>
+                  <th>duration</th>
+                  <th class="is-selected">rating</th>
+                  <th class="is-selected">score</th>
+                  <th class="is-selected">scored_by</th>
+                  <th class="is-selected">rank</th>
+                  <th>popularity</th>
+                  <th>members</th>
+                  <th class="is-selected">favorites</th>
+                  <th>background</th>
+                  <th>premiered</th>
+                  <th>broadcast</th>
+                  <th>related</th>
+                  <th class="is-selected">producer</th>
+                  <th>licensor</th>
+                  <th class="is-selected">studio</th>
+                  <th class="is-selected">genre</th>
+                  <th>opening_theme</th>
+                  <th>ending_theme</th>
+                  <th class="is-selected">duration_min</th>
+                  <th class="is-selected">aired_from_year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+
+
+          <p class="title">users_cleaned.csv</p>
+          <p>Relevant Columns</p>
+          <ol>
+            <li>
+              <strong>username: </strong>
+            </li>
+            <li>
+              <strong>user_id: </strong>
+            </li>
+            <li>
+              <strong>gender: </strong>
+            </li>
+            <li>
+              <strong>location: </strong>
+            </li>
+            <li>
+              <strong>birth_date: </strong>
+            </li>
+          </ol>
+
+          <div class="table-container">
+            <table class="table is-hoverable is-bordered">
+              <thead>
+                <tr>
+                  <th class="is-selected">username</th>
+                  <th class="is-selected">user_id</th>
+                  <th>user_watching</th>
+                  <th>user_completed</th>
+                  <th>user_onhold</th>
+                  <th>user_dropped</th>
+                  <th>user_plantowatch</th>
+                  <th>user_days_spent_watching</th>
+                  <th class="is-selected">gender</th>
+                  <th class="is-selected">location</th>
+                  <th class="is-selected">birth_date</th>
+                  <th>access_rank</th>
+                  <th>join_date</th>
+                  <th>last_online</th>
+                  <th>stats_mean_score</th>
+                  <th>stats_rewatched</th>
+                  <th>stats_episodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <p class="title">Wrangling</p>
+          
+        </div> -->
+
+
+        <div style="background-image:url('header2.jpg'); background-size: cover">
+        <div class="hero-body" id="reviews">
+          
+          <div class="container">
+            <h1 class="title" style="color: white; text-shadow: 3px 3px 0px black">
+              Anime Dataset with Review - MyAnimeList
+            </h1>
+            <h2 class="subtitle" style="color: white; text-shadow: 3px 3px 0px black">
+              Anime Dataset from myanimelist.net (animes, profile, reviews) as 2020
+            </h2>
+          </div>
+        </div>
+        </div>
+
+
+        <div class="content" style="margin: 50px">
+
+          <p class="title">Context</p>
+          <p style="font-size: 20px; line-height: 35px">This dataset three csv files with information about anime, reviews, and profiles crawled from MyAnimeList.net at 01/05/2020.</p>
+           <blockquote>
+          <p>
+            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="https://creativecommons.org/publicdomain/zero/1.0/">www.creativecommons.org/publicdomain/zero/1.0/</a>"
+          </p>
+          <cite>Marlesson.(2020). Anime Dataset with Reviews - MyAnimeList [CSV File]. Retrieved from <a href="https://www.kaggle.com/marlesson/myanimelist-dataset-animes-profiles-reviews#animes.csv">https://www.kaggle.com/marlesson/myanimelist-dataset-animes-profiles-reviews#animes.csv</a></cite>
+        </blockquote><br/>
+
+          <p class="subtitle">Files Utilized from this Dataset</p>
+          <p class="title" id="animes.csv">animes.csv</p>
+          <div class="table is-bordered">
+            <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+              <thead>
+                <tr>
+                  <th>Columns</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody class="subtitle" style="font-size: 18px">
+                <tr class="is-selected">
+                  <td>uid</td>
+                  <td>ID of anime e.g., 28891.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>title</td>
+                  <td>Title of anime in English e.g., Haikyuu!! Second Season.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>synopsis</td>
+                  <td>Synopsis or summary about the plot of the anime e.g., Following their participation at the Inter-High, the Karasuno High School volleyball team...</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>genre</td>
+                  <td>Array of genres of anime e.g, ['Comedy', 'Sports', 'Drama', 'School', 'Shounen'].</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>aired</td>
+                  <td>String of date when anime aired to when it ended e.g., Oct 4, 2015 to Mar 27, 2016.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>episodes</td>
+                  <td>Number of episodes in the series e.g., 25.0. </td>
+                </tr>
+                <tr class="is-selected">
+                  <td>members</td>
+                  <td>Number of members who added this anime to their list e.g., 489888.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>popularity</td>
+                  <td>Ranking regarding number of members e.g., 141.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>ranked</td>
+                  <td>Ranking regarding the aggregate rating e.g., 25.0.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>score</td>
+                  <td>Number based on average rating e.g., 8.82.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>img_url</td>
+                  <td>Link to shows cover image e.g., https://cdn.myanimelist.net/images/anime/9/76662.jpg.</td>
+                </tr>
+                <tr>
+                  <td>link</td>
+                  <td>URL to myanimelist page e.g.,https://myanimelist.net/anime/28891/Haikyuu_Second_Season.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <p class="title">Wrangling</p>
+          <p class="subtitle">Python</p>
+          <pre style="font-family: 'Courier'; font-size: 12px">
+def years(input):
+  resultsYears = []
+  with open(input) as csvfile:
+    csv = reader(csvfile) # change contents to floats
+    for row in csv: # each row is a list
+      year = re.search(r"\d{4}",row[4])
+      if year:
+        resultsYears.append(year.group())
+      else:
+        resultsYears.append(0)
+  return resultsYears
+
+def genres(input):
+  resultsGenre = []
+  with open(input) as csvfile:
+    csv = reader(csvfile) # change contents to floats
+    for row in csv: # each row is a list
+      genre = re.search(r"[a-zA-Z, ,-]+",row[3])
+      if genre:
+        resultsGenre.append(genre.group())
+      else:
+        resultsGenre.append('none')
+  return resultsGenre
+
+
+def add_column_in_csv(input_file, output_file, column1, column2):
+  """ Append a column in existing csv using csv.reader / csv.writer classes"""
+  # Open the input_file in read mode and output_file in write mode
+  count = 0
+  with open(input_file, 'r') as read_obj, \
+      open(output_file, 'w') as write_obj:
+    # Create a csv.reader object from the input file object
+    csv_reader = reader(read_obj)
+    # Create a csv.writer object from the output file object
+    csv_writer = writer(write_obj)
+    # Read each row of the input csv file as list
+    for row in csv_reader:
+      # Pass the list / row in the transform function to add column text for this row
+      row.append(column1[count])
+      row.append(column2[count])
+
+      count += 1
+      # Write the updated row / list to the output file
+      csv_writer.writerow(row)
+
+def collectYears(input):
+  optionYears = {}
+  yrtwenty = []
+  
+  with open(input) as csvfile:
+    csv = reader(csvfile) # change contents to floats
+    for row in csv: # each row is a list
+      if row[12] == '2007':
+        yrtwenty.append(row[0])
+      
+  return yrtwenty
+
+
+
+data = pd.read_csv(newanimelist)
+#filtered = filter(lambda d: '2007' == d[12], data)
+#writer(open("2007-animes.csv", 'w')).writerows(filtered)
+
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        else:
+            return super(NpEncoder, self).default(obj)
+
+
+def collectGenres(key, grp):
+  options = {}
+  option = {}
+  for year in ['0']:
+    years = list(grp[year].unique())
+    option['Year'] = years[0] 
+    option['Anime_Id'] = key[0]
+    option['Title'] = key[1]
+    option['Summary'] = key[2]
+    option['Genres'] = key[3]
+    option['Aired_String'] = key[4]
+    option['Number_Episodes'] = key[5]
+    option['Rank'] = key[6]
+    option['Score'] = key[7]
+    option['Image'] = key[8]
+    option['Main_Genre'] = key[9]
+
+  options[option['Year']] = option    
+  return option
+
+records = []
+for key, grp in data.groupby(['uid', 'title', 'synopsis', 'genres', 'aired', 'episodes', 'ranked', 'score', 'img_url', 'genre']):
+  options = collectGenres(key, grp)
+  records.append(options)
+  
+records = dict(data = records)
+
+file.write(json.dumps(records, indent= 4, cls=NpEncoder))
+          </pre>
+
+          <p class="subtitle">JavaScript</p>
+          <pre style="font-family: 'Courier'; font-size: 12px">
+var hierarchy = d3.nest()
+.key(function(d) { return d.year; })
+.key(function(d) { return d.genre; })
+.entries(data);
+
+var stuff = (JSON.stringify(hierarchy));
+        </pre>
+
+          <p class="title" id="profiles.csv">profiles.csv</p>
+          <div class="table is-bordered">
+            <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+              <thead>
+                <tr>
+                  <th>Columns</th>
+                  <th>Descriptions</th>
+                </tr>
+              </thead>
+              <tbody style="font-size: 18px">
+                <tr class="is-selected">
+                  <td>profile</td>
+                  <td>ID of user profile e.g., DesolatePsyche.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>gender</td>
+                  <td>Gender user identifies as e.g., Male.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>birthday</td>
+                  <td>Birthday of user e.g., Oct 2, 1994.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>favorites_animes</td>
+                  <td>Array of IDs of favorites animes, references of animes.csv->uid.</td>
+                </tr>
+                <tr>
+                  <td>link</td>
+                  <td>URL of user's profile e.g., https://myanimelist.net/profile/DesolatePsyche.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="title" id="reviews.csv">reviews.csv</p>
+          <div class="table is-bordered">
+            <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+              <thead>
+                <tr>
+                  <th>Columns</th>
+                  <th>Descriptions</th>
+                </tr>
+              </thead>
+              <tbody style="font-size: 18px">
+                <tr>
+                  <td>uid</td>
+                  <td>ID of review e.g., 255938.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>profile</td>
+                  <td>ID of user who posted this review profile, reference of profile.csv->profile.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>anime_uid</td>
+                  <td>ID of reviewed anime, reference of animes.csv->uid.</td>
+                </tr>
+                <tr>
+                  <td>text</td>
+                  <td>Text of review.</td>
+                </tr>
+                <tr>
+                  <td>score</td>
+                  <td>Overall score e.g., 8.</td>
+                </tr>
+                <tr class="is-selected">
+                  <td>scores</td>
+                  <td>Array of overall scores e.g., {'Overall': '8', 'Story': '8', 'Animation': '8', 'Sound': '10', 'Character': '9', 'Enjoyment': '8'}.</td>
+                </tr>
+                <tr>
+                  <td>link</td>
+                  <td>URL of review e.g., https://myanimelist.net/reviews.php?id=255938</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          
+          
+        </div>
+
+      </section>
+
+      
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>
