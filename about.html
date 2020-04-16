@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="prototype.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Prototype Implementation</span>
+              </a>
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Final Implementation</span>
+              </a>
+
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+     
+      
+
+
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <aside class="menu">
+            <p class="menu-label">
+              Why Use This Dataset?
+            </p>
+            <ul class="menu-list">
+              
+              <li><a href="#yreviews">Anime Dataset with Reviews</a></li>
+            </ul>
+            <p class="menu-label">
+              Biography
+            </p>
+            <ul class="menu-list">
+              <li><a href="#bio">About</a></li>
+              <li><a href="#inter">Interests</a></li>
+              <li><a href="#gmail">Contact Information</a></li>
+            </ul>
+            <!-- <p class="menu-label">
+              Github
+            </p>
+            <ul class="menu-list">
+              <li><a class="navbar-item" href="#gitHub">Profile</a></li>
+              <li href="#projects"><a>Notable Projects</a></li>
+            </ul>
+            <p class="menu-label">
+              Contact Information
+            </p>
+            <ul class="menu-list">
+              <li href="#anime"><a>MyAnimeList</a></li>
+              <li href="#link"><a>LinkedIn</a></li>
+              <li href="#gmail"><a>Gmail</a></li>
+            </ul> -->
+          </aside>
+        </div>
+
+
+        <div class="column">
+          <p class="title" id="bio">Biography</p>
+
+          <div class="box">
+
+            <p class="title" id="yreviews" style="padding: 40px">Why Use Anime Dataset with Reviews?</p>
+            <p class="subtitle">
+              <p style="font-size: 22px; padding-left: 30px; padding-right: 30px; line-height: 35px">As an anime watcher, I was very excited to discover this dataset. Now I can find random animes while working on classwork. When I saw there were many datasets mapping tons of shows' information, audiences' demographics, and reviews I thought that they should all be compiled and cross referenced. After I filter, wrangle, and organize these csv files, I want to plot a network of shows by the year and category and a map for the location of users with their gender and age statistics. Both graphs with interactivity for reviews and recommendations. </p>
+              <br/>
+              <br/>
+              
+            </p>
+          </div>
+          
+          <div class="box">
+            <article class="media">
+              
+              <div class="media-content">
+                <div class="content">
+                  <p style="font-size: 25px; font-family: 'Georgia'; padding-left: 30px; padding-top: 20px">
+                    <strong>Priscilla Hamiter</strong>
+                    <br/>
+                    <small>University of San Francisco 2020</small>
+                  </p>
+
+                    <ul style="list-style-type: none; line-height: 25px; font-size: 18px; padding-left: 40px">
+                      <li>
+                        Undergrad student studying Computer Science
+                      </li>
+                      <li>
+                        From North Carolina
+                      </li>
+                      <li>
+                        Will sell soul for a good cheesecake &/| recipe
+                      </li>
+                    </ul>
+                  
+                  <div class="tags are-small" style="padding-left: 80px">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">C</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">SVG</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="media-left" style="padding-right: 60px">
+                <figure class="image">
+                  <img class="is-rounded" style="width: 300px; height: 300px" src="assets/profile.jpg">
+                </figure>
+              </div>
+
+            </article>
+          </div>
+
+          <p class="title" id="inter">Interests</p>
+            <div class="level">
+            <figure class="image">
+              <img class="is-rounded" style="width: 200px; height: 200px" src="assets/cooking.gif">
+            </figure>
+
+            <figure class="image">
+              <img class="is-rounded" style="width: 200px; height: 200px" src="assets/typing.gif">
+            </figure>
+
+            <figure class="image">
+              <img class="is-rounded" style="width: 200px; height: 200px" src="assets/yoga.gif">
+            </figure>
+
+            <figure class="image">
+              <img class="is-rounded" style="width: 200px; height: 200px" src="assets/reading.gif">
+            </figure>
+          </div>
+          <div class="level">
+            <p class="subtitle" style="font-size: 20px; padding-left: 65px">Cooking</p>
+            <p class="subtitle" style="font-size: 20px; padding-left: 5px">Coding</p>
+            <p class="subtitle" style="font-size: 20px; padding-left: 5px">Yoga</p>
+            <p class="subtitle" style="font-size: 20px; padding-right: 65px">Reading</p>
+          </div>
+
+          <p class="title" id="gmail">Contact Information</p>
+          <p style="font-size: 20px; font-family: 'Georgia'"> Gmail <i style="font-size: 20px" class="fas fa-envelope"></i> <a style="font-size: 20px; padding-right: 20px" href="mailto:pmhamiter@dons.usfca.edu">pmhamiter@dons.usfca.edu</a>
+          Linked<i style="font-size: 20px" class="fab fa-linkedin"></i> <a style="font-size: 20px; padding-right: 20px" href="https://www.linkedin.com/in/priscilla-hamiter-668293124/
+          ">Priscilla Hamiter</a>
+          Github <i style="font-size: 20px" class="fab fa-github"></i> <a style="font-size: 20px" href="https://github.com/phamiter253
+          ">phamiter253</a> 
+          </p>
+          
+
+        </div>
+      </div>
+
+
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

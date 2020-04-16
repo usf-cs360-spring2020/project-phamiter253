@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="prototype.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Prototype Implementation</span>
+              </a>
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Final Implementation</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container" >
+      <!-- Begin page content -->
+        <section>
+          <div style="background-image:url('assets/header2.jpg'); background-size: cover">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title" style="color: white; text-shadow: 3px 3px 0px black">
+                  Anime Dataset with Review - MyAnimeList
+                </h1>
+                <h2 class="subtitle" style="color: white; text-shadow: 3px 3px 0px black">
+                  Anime Dataset from myanimelist.net (animes, profile, reviews) as 2020
+                </h2>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <br/>
+
+        <nav class="tabs is-boxed">
+          <div class="container">
+            <ul>
+              <li class="tab is-active" onclick="openTab(event, 'description')">
+                <a>
+                  <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+                  <span>Description</span>
+                </a>
+              </li>
+              <li class="tab" onclick="openTab(event, 'columns')">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-columns" aria-hidden="true"></i></span>
+                  <span>Columns</span>
+                </a>
+              </li>
+              <!-- <li class="tab" onclick="openTab(event, 'data')">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-database" aria-hidden="true"></i></span>
+                  <span>Data</span>
+                </a>
+              </li> -->
+              <li class="tab" onclick="openTab(event, 'wrangling')">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-code" aria-hidden="true"></i></span>
+                  <span>Wrangling</span>
+                </a>
+              </li>
+            </ul>
+          </div> 
+      </nav>
+
+        <div class="content" style="margin: 50px">
+
+          <div class="content-tab" id="description">
+            <p class="title">Context</p>
+            <p style="font-size: 20px; line-height: 35px">
+              This dataset contains information about Anime (16k), Reviews(130k) and Profiles(47k) crawled from MyAnimeList.net on 05/01/20.<br/><br/>
+
+              Contains three files:
+            </p>
+            <ul style="font-size: 18px; line-height: 28px; margin-top: 5px">
+              <li><p>animes.csv contains list of anime, with title, title synonyms, genre, duration, rank, populatiry, score, airing date, episodes and many other important data about individual anime providing sufficient information about trends in time about important aspects of anime. Rank is in float format in csv, but it contains only integer value. This is due to NaN values and their representation in pandas.</p></li>
+              <li><p>profiles.csv contains information about users who watch anime, namely username, birth date, gender, and favorite animes list.</p></li>
+              <li><p>reviews.csv contains information about reviews users x animes, with text review and scores.</p></li>
+            </ul>
+            <blockquote style="font-size: 15px">
+              <p>
+                "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="https://creativecommons.org/publicdomain/zero/1.0/">www.creativecommons.org/publicdomain/zero/1.0/</a>"
+              </p>
+              <cite>
+                Marlesson.(2020). Anime Dataset with Reviews - MyAnimeList [CSV File]. Retrieved from <a href="https://www.kaggle.com/marlesson/myanimelist-dataset-animes-profiles-reviews#animes.csv">https://www.kaggle.com/marlesson/myanimelist-dataset-animes-profiles-reviews#animes.csv</a>
+              </cite>
+            </blockquote><br/>
+          </div>
+          
+
+          <div class="content-tab" id="columns" style="display: none">
+            <!-- <p class="subtitle">Files Utilized from this Dataset</p> -->
+            <div class="columns">
+              <div class="column is-one-third" style="padding: 40px">
+                <p class="title" id="animes.csv">animes.csv</p>
+                <p class="subtitle">
+                  Contains list of anime, with title, title synonyms, genre, duration, rank, populatiry, score, airing date, episodes and many other important data about individual anime providing sufficient information about trends in time about important aspects of anime. Rank is in float format in csv, but it contains only integer value. This is due to NaN values and their representation in pandas.
+                </p>
+
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Rows</span>
+                        <span class="tag is-primary">16k</span>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Columns</span>
+                        <span class="tag is-primary">12</span>
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="table is-bordered">
+                  <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+                    <thead>
+                      <tr>
+                        <th>Columns</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="subtitle" style="font-size: 18px">
+                      <tr class="is-selected">
+                        <td>uid</td>
+                        <td>ID of anime e.g., 28891.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>title</td>
+                        <td>Title of anime in English e.g., Haikyuu!! Second Season.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>synopsis</td>
+                        <td>Synopsis or summary about the plot of the anime e.g., Following their participation at the Inter-High, the Karasuno High School volleyball team...</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>genre</td>
+                        <td>Array of genres of anime e.g, ['Comedy', 'Sports', 'Drama', 'School', 'Shounen'].</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>aired</td>
+                        <td>String of date when anime aired to when it ended e.g., Oct 4, 2015 to Mar 27, 2016.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>episodes</td>
+                        <td>Number of episodes in the series e.g., 25.0. </td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>members</td>
+                        <td>Number of members who added this anime to their list e.g., 489888.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>popularity</td>
+                        <td>Ranking regarding number of members e.g., 141.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>ranked</td>
+                        <td>Ranking regarding the aggregate rating e.g., 25.0.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>score</td>
+                        <td>Number based on average rating e.g., 8.82.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>img_url</td>
+                        <td>Link to shows cover image e.g., https://cdn.myanimelist.net/images/anime/9/76662.jpg.</td>
+                      </tr>
+                      <tr>
+                        <td>link</td>
+                        <td>URL to myanimelist page e.g.,https://myanimelist.net/anime/28891/Haikyuu_Second_Season.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+            <br/>
+            <br/>
+            <br/>
+            
+            <div class="columns">
+              <div class="column is-one-third" style="padding: 40px">
+                <p class="title" id="profiles.csv">profiles.csv</p>
+                <p class="subtitle">
+                  Contains information about users who watch anime, namely username, birth date, gender, and favorite animes list.
+                </p>
+
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Rows</span>
+                        <span class="tag is-primary">47k</span>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Columns</span>
+                        <span class="tag is-primary">5</span>
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+
+              </div>
+              <div class="column">
+                <div class="table is-bordered">
+                  <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+                    <thead>
+                      <tr>
+                        <th>Columns</th>
+                        <th>Descriptions</th>
+                      </tr>
+                    </thead>
+                    <tbody style="font-size: 18px">
+                      <tr class="is-selected">
+                        <td>profile</td>
+                        <td>ID of user profile e.g., DesolatePsyche.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>gender</td>
+                        <td>Gender user identifies as e.g., Male.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>birthday</td>
+                        <td>Birthday of user e.g., Oct 2, 1994.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>favorites_animes</td>
+                        <td>Array of IDs of favorites animes, references of animes.csv->uid.</td>
+                      </tr>
+                      <tr>
+                        <td>link</td>
+                        <td>URL of user's profile e.g., https://myanimelist.net/profile/DesolatePsyche.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+            
+            <div class="columns">
+              <div class="column is-one-third" style="padding: 40px">
+                <p class="title" id="reviews.csv">reviews.csv</p>
+                <p class="subtitle">
+                  Contains information about reviews users x animes, with text review and scores.
+                </p>
+
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Rows</span>
+                        <span class="tag is-primary">130k</span>
+                      </div>
+                    </div>
+                    <div class="level-item">
+                      <div class="tags has-addons">
+                        <span class="tag">Columns</span>
+                        <span class="tag is-primary">7</span>
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+
+              </div>
+              <div class="column">
+                <div class="table is-bordered">
+                  <table class="table" style="font-size: 20px; font-family: 'Georgia'">
+                    <thead>
+                      <tr>
+                        <th>Columns</th>
+                        <th>Descriptions</th>
+                      </tr>
+                    </thead>
+                    <tbody style="font-size: 18px">
+                      <tr>
+                        <td>uid</td>
+                        <td>ID of review e.g., 255938.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>profile</td>
+                        <td>ID of user who posted this review profile, reference of profile.csv->profile.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>anime_uid</td>
+                        <td>ID of reviewed anime, reference of animes.csv->uid.</td>
+                      </tr>
+                      <tr>
+                        <td>text</td>
+                        <td>Text of review.</td>
+                      </tr>
+                      <tr>
+                        <td>score</td>
+                        <td>Overall score e.g., 8.</td>
+                      </tr>
+                      <tr class="is-selected">
+                        <td>scores</td>
+                        <td>Array of overall scores e.g., {'Overall': '8', 'Story': '8', 'Animation': '8', 'Sound': '10', 'Character': '9', 'Enjoyment': '8'}.</td>
+                      </tr>
+                      <tr>
+                        <td>link</td>
+                        <td>URL of review e.g., https://myanimelist.net/reviews.php?id=255938</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="content-tab" id="data" style="display: none">
+            <div id="list">
+              <p><iframe src="jsonform.txt" frameborder="0" height="400"
+                  width="95%"></iframe></p>
+            </div>
+          </div> -->
+
+          <div class="content-tab" id="wrangling" style="display: none">
+
+            <div class="columns">
+              <div class="column is-one-quarter">
+
+                <aside class="menu">
+                  <p class="menu-label">
+                    Python
+                  </p>
+                  <ul class="menu-list" style="list-style: none; padding: none; margin: none">
+                    <li><a href="#add">Creating New Columns</a></li>
+                    <li><a href="#format">Converting to JSON</a></li>
+                  </ul>
+                  <p class="menu-label">
+                    Java
+                  </p>
+                  <ul class="menu-list" style="list-style: none">
+                    <li><a href="#json">Converting to nested JSON</a></li>
+                    <li><a href="#duplicates">Removing Duplicate JSON Objects</a></li>
+                  </ul>
+                </aside>
+                
+              </div>
+              <div class="column">
+                <p class="subtitle" id="add">Python</p>
+                <p class="title">Adding New Columns to CSV<sup><a href="#fn1">1</a></sup></p>
+                <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
+
+
+      def years(input):
+        resultsYears = []
+        with open(input) as csvfile:
+          csv = reader(csvfile) # change contents to floats
+          for row in csv: # each row is a list
+            year = re.search(r"\d{4}",row[4])
+            if year:
+              resultsYears.append(year.group())
+            else:
+              resultsYears.append(0)
+        return resultsYears
+
+      def genres(input):
+        resultsGenre = []
+        with open(input) as csvfile:
+          csv = reader(csvfile) # change contents to floats
+          for row in csv: # each row is a list
+            genre = re.search(r"[a-zA-Z, ,-]+",row[3])
+            if genre:
+              resultsGenre.append(genre.group())
+            else:
+              resultsGenre.append('none')
+        return resultsGenre
+
+
+      def add_column_in_csv(input_file, output_file, column1, column2):
+        """ Append a column in existing csv using csv.reader / csv.writer classes"""
+        # Open the input_file in read mode and output_file in write mode
+        count = 0
+        with open(input_file, 'r') as read_obj, \
+            open(output_file, 'w') as write_obj:
+          # Create a csv.reader object from the input file object
+          csv_reader = reader(read_obj)
+          # Create a csv.writer object from the output file object
+          csv_writer = writer(write_obj)
+          # Read each row of the input csv file as list
+          for row in csv_reader:
+            # Pass the list / row in the transform function to add column text for this row
+            row.append(column1[count])
+            row.append(column2[count])
+
+            count += 1
+            # Write the updated row / list to the output file
+            csv_writer.writerow(row)
+
+
+</pre>
+
+<br id="format"/>
+<br/>
+<br/>
+<br/>
+
+<p class="title">Converting to JSON format</p>
+<pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
+
+
+      def collectYears(input):
+        optionYears = {}
+        yrtwenty = []
+        
+        with open(input) as csvfile:
+          csv = reader(csvfile) # change contents to floats
+          for row in csv: # each row is a list
+            if row[12] == '2007':
+              yrtwenty.append(row[0])
+            
+        return yrtwenty
+
+
+
+      data = pd.read_csv(newanimelist)
+      #filtered = filter(lambda d: '2007' == d[12], data)
+      #writer(open("2007-animes.csv", 'w')).writerows(filtered)
+
+      class NpEncoder(json.JSONEncoder):
+          def default(self, obj):
+              if isinstance(obj, np.integer):
+                  return int(obj)
+              elif isinstance(obj, np.floating):
+                  return float(obj)
+              elif isinstance(obj, np.ndarray):
+                  return obj.tolist()
+              else:
+                  return super(NpEncoder, self).default(obj)
+
+
+      def collectGenres(key, grp):
+        options = {}
+        option = {}
+        for year in ['0']:
+          years = list(grp[year].unique())
+          option['Year'] = years[0] 
+          option['Anime_Id'] = key[0]
+          option['Title'] = key[1]
+          option['Summary'] = key[2]
+          option['Genres'] = key[3]
+          option['Aired_String'] = key[4]
+          option['Number_Episodes'] = key[5]
+          option['Rank'] = key[6]
+          option['Score'] = key[7]
+          option['Image'] = key[8]
+          option['Main_Genre'] = key[9]
+
+        options[option['Year']] = option    
+        return option
+
+      records = []
+      for key, grp in data.groupby(['uid', 'title', 'synopsis', 'genres', 'aired',
+       'episodes', 'ranked', 'score', 'img_url', 'genre']):
+        options = collectGenres(key, grp)
+        records.append(options)
+        
+      records = dict(data = records)
+
+      file.write(json.dumps(records, indent= 4, cls=NpEncoder))
+
+
+                </pre>
+
+                <br id="json"/>
+                <br/>
+                <br/>
+                <br/>
+
+              <p class="subtitle">JavaScript</p>
+              <p class="title" >Converting to Nested JSON Hierarchy<sup><a href="#fn2">2</a></sup></p>
+              <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
+
+
+      var hierarchy = d3.nest()
+      .key(function(d) { return d.year; })
+      .key(function(d) { return d.genre; })
+      .entries(data);
+
+      var stuff = (JSON.stringify(hierarchy));
+
+
+            </pre>
+
+            <br id="duplicates"/>
+            <br/>
+            <br/>
+            <br/>
+
+            <p class="title">Removing Duplicates JSON Objects<sup><a href="#fn3">3</a></sup></p>
+            <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
+                  
+
+      function removeDuplicates(data) {    
+        // Create an array of objects 
+        // Declare a new array 
+        var newArray = []; 
+          
+        // Declare an empty object 
+        var uniqueObject = {}; 
+          
+        // Loop for the array elements 
+        for (var i in data) { 
+
+            // Extract the title 
+            objTitle = data[i]['uid']; 
+
+            // Use the title as the index 
+            uniqueObject[objTitle] = data[i]; 
+        } 
+          
+        // Loop to push unique object into array 
+        for (i in uniqueObject) { 
+            newArray.push(uniqueObject[i]); 
+        } 
+          
+        var hierarchy = d3.nest()
+          .key(function(d) { return d.year; })
+          .key(function(d) { return d.genre; })
+          .key(function(d) { return d.genres; })
+          .entries(newArray);
+        // Display the unique objects 
+        console.log(hierarchy); 
+      }
+
+      removeDuplicates(data);
+
+
+                </pre>
+                <br/>
+                <br/>
+                <hr style="width: 80%"></hr>
+
+              <p class="subtitle" style="font-family: 'Georgia'; width: 80%">1. 
+                <a id="fn1" href="https://thispointer.com/python-add-a-column-to-an-existing-csv-file/">thispoint.com - Add a list as a colmun to an exisitng csv file</a><br/>
+                2. <a id="fn2" href="http://learnjsdata.com/group_data.html">Learn JS Data - Grouping Data</a><br/>
+                3. <a href="https://www.geeksforgeeks.org/how-to-remove-duplicates-from-an-array-of-objects-using-javascript/">GeeksforGeeks - How to remove duplicates from an array of objects using JavaScript?</a>
+              </p>
+              </div>
+
+
+
+              </div>              
+            </div>
+          </div>  
+        </div>
+
+     
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+    function openTab(evt, tabName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("content-tab");
+      for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tab");
+      for (i = 0; i < x.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " is-active";
+    }
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

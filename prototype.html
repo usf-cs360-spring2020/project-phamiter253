@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="prototype.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Prototype Implementation</span>
+              </a>
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Final Implementation</span>
+              </a>
+
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+     
+     <!-- <div class="content" style="margin: 100px">
+        <div class="level">
+          <figure>
+            <img src="mal.png">
+          </figure>
+          <p class="title">What is MyAnimeList.net?</p>
+        </div>
+     </div> -->
+
+      <div class="content" style="margin: 100px">
+        <div class="level">
+          <div class="columns">
+            <div class="column is-third">
+              <p class="title" style="padding-left: 50px; padding-top: 50px; font-size: 50px">Still In<br/>Development...</p>
+          <p class="subtitle" style="padding-left: 50px; line-height: 33px; padding-top: 5px"> Unfortunately I haven't finished this prototype. <br/>I've been focusing on filtering and restructuring<br/> the datasets I am using and I haven't been able to create more complex visualizations I've been<br/> wanting to implement.<br/><br/>
+
+          Here are some ideas and inspirations I hope to recreate and attribute to... 
+
+          </p>
+
+            </div>
+            <div class="column">
+              <svg width="600" height="600" id="vis"></svg>
+          <script src="network.js"></script>
+            </div>
+          </div>
+ 
+        </div>
+        <br/>
+        <br/>
+
+        <div class="level">
+          <div class="card" style="padding-top: 30px">
+            <div class="card-image">
+              <figure class="image is-3by2">
+                <img src="assets/bundling.jpeg">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">Hierarchical Edge Bundling</p>
+                  <p class="subtitle is-6"><a href="https://observablehq.com/@d3/hierarchical-edge-bundling">By Mike Bostock</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card" style="padding-top: 30px">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="assets/donut.png">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">Pie Chart Update v4</p>
+                  <p class="subtitle is-6"><a href="https://bl.ocks.org/tezzutezzu/c2653d42ffb4ecc01ffe2d6c97b2ee5e">danilo's Block</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card" style="padding-top: 30px">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="assets/condregram.png">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">Condegram Spiral Plot</p>
+                  <p class="subtitle is-6"><a href="https://bl.ocks.org/arpitnarechania/027e163073864ef2ac4ceb5c2c0bf616">By Arpit Narechania</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+     </div>
+      
+
+
+
+
+
+
+
+
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

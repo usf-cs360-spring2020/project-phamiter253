@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="prototype.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Prototype Implementation</span>
+              </a>
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Final Implementation</span>
+              </a>
+
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+       
+
+
+      	<div class="columns">
+		  <div class="column">
+		   <figure class="image is-4by3">
+             <img src="assets/dragon1.jpg">
+           </figure>
+
+
+           <article class="tile is-child">
+	          <a href="data.html"><p class="title" style="font-family: 'Georgia'">DataSets</p></a>
+
+	          <ul>
+	          	<!-- <li>
+	          		<a href="data.html"><p class="subtitle" style="font-size: 30px; font-family: 'Georgia'">MyAnimeList Dataset</p></a>
+	          	</li>
+	          	<br/> -->
+	          	<li>
+	         		<a href="data.html#reviews"><p class="subtitle" style="font-size: 30px; font-family: 'Georgia'">Anime Dataset with Reviews - MyAnimeList</p></a>
+	         			<ul>
+	          				<li>
+	          					<a href="data.html#animes.csv">
+	          						<p class="subtitle" style="font-family: 'Georgia'; font-size: 20px">animes.csv</p>
+	          					</a>
+	          				</li>
+	          				<li>
+	          					<a href="data.html#profiles.csv">
+	          						<p class="subtitle" style="font-family: 'Georgia'; font-size: 20px">profiles.csv</p>
+	          					</a>
+	          				</li>
+	          				<li>
+	          					<a href="data.html#reviews.csv">
+	          						<p class="subtitle" style="font-family: 'Georgia'; font-size: 20px">reviews.csv</p>
+	          					</a>
+	          				</li>
+	          			</ul>
+
+	          	</li>
+
+	        </article>
+
+
+           <figure class="image is-4by3">
+	          <img src="assets/naruto3.jpg">
+	        </figure>
+		  </div>
+		  <div class="column">
+		    
+		  	<article class="tile is-child">
+		  	  <p class="subtitle">Data Visualization Final Project</p>
+	          <p class="title" style="font-size: 60px">Anime Database</p>
+	          
+	          <p class="subtitle" style="font-family: 'Georgia'; font-size: 28px; padding-bottom: none; line-height: 20%"><strong>Introduction</strong></p>
+
+	          <p style="font-size: 18px; padding-top: none">
+
+	          	When trying to discover a new anime tv series, I usually get overwhelmed with choices, recommendations, and reviews. A good resource to use is MyAnimeList.com where completed, currently airing, and upcoming shows are listed and organized by genre, ranking, scores and etc. 
+
+	          <br/>
+	          <br/>
+
+	          	MyAnimeList has extensive data about each anime in its catalog and all of the users who leave ratings and reviews. Each anime page has title, synopsis, air date, cast, production, ranking, ratings, and scores while a user profile includes their reviews, recommendations, and personal statics. Fortunately I have found a few datasets that crawled the websites information. 
+
+	          <br/>
+	          <br/>
+
+				With these datasets, I want to identify trends between the years, ratings, and the users and maybe create an interactive recommendation graph.
+
+	      	  </p>
+	      
+	         
+	          <br/>
+	          <br/>
+	          <p class="subtitle" vertical-align="text-bottom" style="font-size: 23px">Bio & Contact Information</p>
+	          <a href="about.html"><p class="title" style="font-size: 40px; line-height: 5px" vertical-align="text-bottom">About</p></a>
+	          
+	        </article>
+
+		  </div>
+		  <div class="column">
+		  	<figure class="image is-4by3">
+	          <img src="assets/sailor2.jpg">
+	        </figure>
+
+	        <article class="tile is-child">
+	          <p class="title" align="right">Visualizations</p>
+	          <ul dir="rtl" style="padding-right: 30px">
+	          	<li align="right">
+	          		<a href="prototype.html"><p class="subtitle" style="font-family: 'Georgia'; font-size: 30px">Prototype Implementation</p></a>
+	          			<ul dir="rtl" style="padding-right: 30px">
+		          	<li align="right">
+		          		<a href="prototype.html"><p class="subtitle" style="font-family: 'Georgia'; font-size: 20px">Cindegram Spiral Plot</p></a>	
+		      		</li>
+		      	  </ul>
+	      		</li>
+	      		<br/>
+	      		<br/>
+	      		<!-- <br/>
+	      		<li align="right">
+	      			<a href="final.html"><p class="subtitle" style="font-family: 'Georgia'; font-size: 30px">Final Implementation</p></a>
+	      		</li> -->
+	      	  </ul>
+	      	  <br/>
+	        </article>
+
+		    <figure class="image is-4by3">
+	          <img src="assets/attack4.jpeg">
+	        </figure>
+		  </div>
+		</div>
+
+
+
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>
