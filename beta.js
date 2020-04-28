@@ -493,14 +493,14 @@ function buildForce(data) {
   			black = count._groups[0].length - red;
   			div
 	   .html(`<h1 style="font-family: 'Palatino Linotype'">
-	   	<strong>${d.data.id} # of animes: ${d.data.data.leaves}</strong><br/>
+	   	<strong>${d.data.id} </strong><br/>Number of animes: ${d.data.data.leaves}<br/>
 	   	Number of red: ${red}<br/>
 	   	Number of black: ${black}<br/>
 	   	${extra}
 	   	</h1>`)
 	      .style("left", (d3.event.pageX) + "px")
 	      .style("top", (d3.event.pageY) + "px")
-	      .style("width", "132px")
+	      .style("width", "150px")
 	      .style("height", "auto");
 
   		}else if(!d.children){
@@ -512,7 +512,7 @@ function buildForce(data) {
 	   			<br/>
 	   			<p style="font-family: 'Palatino Linotype'; font-size: 12px">
 	   			Rank:<br/>
-	   			<span style="font-size: 15px"><strong>${d.data.data.rank}</strong></span>
+	   			<span style="font-size: 15px"><strong>${parseInt(d.data.data.rank)}</strong></span>
 	   			</p><br/>
 	   			<p style="font-family: 'Palatino Linotype'; font-size: 10px">
 	   			Popularity:<br/>
@@ -595,7 +595,7 @@ function buildForce(data) {
 					<p class="title" id="texts"> ${d.data.data.name}</p>
 			  	<div class="level">
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Score: <br/>${parseFloat(d.data.data.score).toFixed(2)} / 10</p>
-			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Rank: <br/>${d.data.data.rank}</p>
+			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Rank: <br/>${parseInt(d.data.data.rank)}</p>
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Popularity: <br/>${d.data.data.popularity}</p>
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Members: <br/>${parseInt(d.data.data.members).toLocaleString()}</p>
 			  	</div>
@@ -635,7 +635,7 @@ function buildForce(data) {
 						</p>
 						<hr style="width: 80%"></hr>
 						<p class="subtitle" style="font-size: 15px; font-family: 'Georgia'">
-						<strong>Number of Episodes: </strong>${d.data.data.episodes}
+						<strong>Number of Episodes: </strong>${parseInt(d.data.data.episodes)}
 						</p>
 
 					</div>
@@ -652,7 +652,7 @@ function buildForce(data) {
 					<div class="column is-one-quarter">
 						<p class="subtitle" style="font-size: 15px; font-family: 'Georgia'">
 						<strong>Total Number<br/> of Favorites: </strong></p>
-						<p class="subtitle" style="font-size: 20px; color: gray; text-align:center; font-family: 'Georgia'">${d.data.data.total_favorites}</p>
+						<p class="subtitle" style="font-size: 20px; color: gray; text-align:center; font-family: 'Georgia'">${parseInt(d.data.data.total_favorites).toLocaleString()}</p>
 						
 						<hr style="width: 80%"></hr>
 						<p class="subtitle" style="font-size: 15px; font-family: 'Georgia'">
@@ -675,11 +675,11 @@ function buildForce(data) {
 						<p class="title" style="font-size: 15px"><strong>Number of Favorites from: </strong></p><br/>
 
 						<p class="subtitle" style="font-size: 12px; font-family: 'Georgia';text-indent: 5px">
-						<strong>Women: </strong><span style="color: gray">${d.data.data.female_favorites}<span>
+						<strong>Women: </strong><span style="color: gray">${parseInt(d.data.data.female_favorites).toLocaleString()}<span>
 						</p>
 						<hr style="width: 80%"></hr>
 						<p class="subtitle" style="font-size: 12px; font-family: 'Georgia'; text-indent: 5px">
-						<strong>Men: </strong><span style="color: gray">${d.data.data.male_favorites}<span>
+						<strong>Men: </strong><span style="color: gray">${parseInt(d.data.data.male_favorites).toLocaleString()}<span>
 						</p>
 					</div>
 					<div class="column">
@@ -697,15 +697,15 @@ function buildForce(data) {
 						<p class="title" style="font-size: 15px"><strong>Number of Favorites from: </strong></p><br/>
 
 						<p class="subtitle" style="font-size: 12px; font-family: 'Georgia'; text-indent: 5px">
-						<strong>Teens: </strong><span style="color: gray">${d.data.data.teen_favorites}<span>
+						<strong>Teens: </strong><span style="color: gray">${parseInt(d.data.data.teen_favorites).toLocaleString()}<span>
 						</p>
 						<hr style="width: 80%"></hr>
 						<p class="subtitle" style="font-size: 12px; font-family: 'Georgia'; text-indent: 5px">
-						<strong>Young Adults: </strong><span style="color: gray">${d.data.data.young_adult_favorites}<span>
+						<strong>Young Adults: </strong><span style="color: gray">${parseInt(d.data.data.young_adult_favorites).toLocaleString()}<span>
 						</p>
 						<hr style="width: 80%"></hr>
 						<p class="subtitle" style="font-size: 12px; font-family: 'Georgia'; text-indent: 5px">
-						<strong>Adults: </strong><span style="color: gray">${d.data.data.adult_favorites}<span>
+						<strong>Adults: </strong><span style="color: gray">${parseInt(d.data.data.adult_favorites).toLocaleString()}<span>
 						</p>
 					</div>
 					<div class="column">
