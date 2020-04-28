@@ -509,11 +509,12 @@ function buildForce(data) {
 	   	<h1 style="font-family: 'Palatino Linotype'; text-align: center"><strong>${d.data.id}</strong></h1>
 	   	<div class="columns">
 	   		<div class="column is-one-quarter" style="padding-left: 10px">
+	   			<br/>
 	   			<p style="font-family: 'Palatino Linotype'; font-size: 12px">
 	   			Rank:<br/>
 	   			<span style="font-size: 15px"><strong>${d.data.data.rank}</strong></span>
-	   			</p>
-	   			<p style="font-family: 'Palatino Linotype'">
+	   			</p><br/>
+	   			<p style="font-family: 'Palatino Linotype'; font-size: 10px">
 	   			Popularity:<br/>
 	   			<span style="font-size: 15px"><strong>${d.data.data.popularity}</strong></span><br/>
 	   			</p>
