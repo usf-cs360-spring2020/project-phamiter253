@@ -596,7 +596,7 @@ function buildForce(data) {
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Score: <br/>${parseFloat(d.data.data.score).toFixed(2)} / 10</p>
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Rank: <br/>${d.data.data.rank}</p>
 			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Popularity: <br/>${d.data.data.popularity}</p>
-			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Members: <br/>${d.data.data.members}</p>
+			  		<p class="subtitle" style="font-size: 20px; font-family: 'Georgia'">Members: <br/>${parseInt(d.data.data.members).toLocaleString()}</p>
 			  	</div>
 			  	<div class="tags are-medium">${strGenre}</div>
 
