@@ -294,7 +294,7 @@ function createLegend(){
 			}else if(currentData == "Young"){
 				text = "Favorited more by Young Adults<br/>(20 &le; and &le; 35)";
 			}else if(currentData == "Adults"){
-				text = "Favorited more by Adults<br/>(35 &le; and &le; 60)";
+				text = "Favorited more by Adults<br/>(35 < and &le; 60)";
 			}else if(currentData == "MultiAge"){
 				text = "Favorited by Multiple Generations Equally";
 			}else if(currentData == "Either100"){
