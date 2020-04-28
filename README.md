@@ -2,7 +2,7 @@
 
 <https://usf-cs360-spring2020.github.io/project-phamiter253/>
 
-![Profile Image](assets/profile.png)
+![Profile Image](assets/profile.jpg)
 
 **Name:** Priscilla Hamiter  
 **Email:** <pmhamiter@dons.usfca.edu>
