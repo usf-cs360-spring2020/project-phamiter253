@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: Change title -->
+    <title>Website Template</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    
+    <!-- Load Font Awesome 5 (free) icons -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
+
+    <!-- include d3.js v5 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- include d3.js modules -->
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+  <!-- Page navigation -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <!-- TODO: Change link to repository homepage if needed -->
+        <!-- TODO: Change which navbar-item is-active if needed -->
+        <a class="navbar-item is-active" href="index.html">
+          <span class="icon"><i class="fas fa-home"></i></span>
+          <span>Home</span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="main-menu" class="navbar-menu has-text-weight-medium">
+        <!-- Left navbar items -->
+        <div class="navbar-start">
+          <a class="navbar-item" href="data.html" title="Data">
+            <span class="icon"><i class="fas fa-table"></i></span>
+            <span>Data</span>
+          </a>
+
+          <!-- TODO: Modify or remove dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Visualizations
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="alpha.html">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span>Alpha Release Prototype</span>
+              </a>
+              <a class="navbar-item" href="beta.html">
+                <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Beta Release Prototype</span>
+              </a>
+
+              <hr class="navbar-divider">
+
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-bar"></i></span>
+                <span>Final Implementation</span>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right navbar items -->
+        <div class="navbar-end">
+          <!-- TODO: Update as needed -->
+          <a class="navbar-item" href="grade.html" title="About">
+            <span class="icon"><i class="fas fa-tasks"></i></span>
+            <span>Grade</span>
+          </a>
+
+          <a class="navbar-item" href="about.html" title="About">
+            <span class="icon"><i class="fas fa-info-circle"></i></span>
+            <span>About</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End page navigation -->
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="section">
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <div>
+              <img src="assets/mal.png" style="width:300px; height: 300px">
+            </div>
+          </div>
+          <div class="column">
+            <p class="title" style="padding: 60px; font-size: 25px; line-height: 40px; font-weight: lighter;">After finishing an anime, I want to find another great show or movie and usually look on MyAnimeList. On the website, I can find all the information about any anime, compare ratings and rankings, look for similar genres, or read reviews. There are so many ways to find something new but I wonder....</p>
+          </div>
+          
+        </div>
+        
+    </div>
+    <hr></hr>
+    <div class="column" style="padding: 100px">
+      <p class="title" style="font-size: 30px">Which year premiered the most high ranked and most popular animes?</p>
+    </div>
+
+    <div>
+      <hr></hr>
+      <p class="title" style="font-size: 45px; margin-left: 80px; margin-top: 80px">Introduction</p>
+      <p class="subtitle" style="font-size: 25px; margin-left: 80px">Understanding the Data & Encodings</p>
+      <div class="columns">
+        <div class="column" style="padding-left: 50px; padding-right: 50px">
+          <p class="subtitle" style="font-family: 'Georgia'; font-size: 20px; margin-left: 80px; line-height: 35px"> With the three csv files in the dataset I filtered out less relevant columns, animes that premiered earlier than 1986, any anime that was categorized as Hentai, and rows with blank cells.<br/><br/>
+          Ok. To understand the graph below, you should know:<br/>
+          </p>
+          <ul style="list-style-type: square; margin-left: 110px; font-family: 'Georgia'; font-size: 16px; line-height: 30px">
+            <li>Black nodes connected to the center node represent a year in between 1986 & 2019</li>
+            <li>Different colored nodes/leaves represent an anime</li>
+            <li>A black border around a leaf node means that the anime is ranked in the <br/>Top 100 because of Overall Scores or Top 100 in Popularity (highest rated & most members) on MyAnimeList</li>
+            <li>A red border around a leaf node means that the anime is ranked in the <br/>Top 100 on MyAnimeList because of Overall Scores & Top 100 in Popularity (highest rated & most members) on MyAnimeList</li>
+          </ul>
+        </div>
+        <div class="column is-one-third" style="margin-right: 100px">
+          <figure style="width: 400px; height: 400px">
+            <img src="assets/venn.jpg">
+          </figure>
+        </div>
+         
+      </div>
+      <br/>
+    <h1 class="title" style="margin-top: 40px">Anime Database Force Directed Tree</h1>
+    </div>
+    <br/>
+    <br/>
+    <div class="columns">
+      <div class="column">
+        <p id="anime_info"></p>
+
+        <button class="accordion"><p style="font-size: 15px; font-family: 'Georgia'">Instructions</p></button>
+          <div class="panel" style="padding: 30px">
+            <p class="title">
+              How to Use this Graph
+            </p>
+            <p class="caption" style="line-height: 0px">Understanding the Force.... Directed Tree</p><br/>
+
+            <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px">
+              This graph visualizes animes listed in the anime database, MyAnimeList.net. <br/>
+
+              <span style="font-weight: bold;">Here are some features of the graph:</span><br/>
+              <span><p style="line-height: 10px"></p></span>
+              <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px; margin-left: 40px"><i class="far fa-caret-square-down"></i> Selection Dropdown</p>
+
+              <p class="title" style="font-size: 15px; margin: 15px; font-weight: lighter; line-height: 25px; margin-left: 65px">The 'Select Year Range' Dropdown has 7 options. The selected option changes the data input and filters out other year choices.</p>
+
+
+
+              <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px; margin-left: 40px"><i class="far fa-dot-circle"></i> Color Changing Radio Buttons</p>
+
+              <p class="title" style="font-size: 15px; margin: 15px; font-weight: lighter; line-height: 25px; margin-left: 65px">The 'Ratings', 'Gender', & 'Age Groups' Radio Buttons display the color encodings based on the checked category.</p>
+
+              
+
+              <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px; margin-left: 40px"><i class="fas fa-tools"></i> Tooltip Details & Chart</p>
+
+              <p class="title" style="font-size: 15px; margin: 15px; font-weight: lighter; line-height: 25px; margin-left: 65px">The tooltips displays the year and number of animes released during that year and number the red and black bordered nodes, if the mouse is over a black node on the graph. If the mouse is over a leaf, the tooltip displays the name, score, rank, and (not completely implemented yet)overall stats of the selected anime.</p>
+
+              
+
+              <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px; margin-left: 40px"><i class="fas fa-info-circle"></i> Individual Anime Information & Stats</p>
+
+              <p class="title" style="font-size: 15px; margin: 15px; font-weight: lighter; line-height: 25px; margin-left: 65px">Clicking on a leaf node displays ratings, genres, synopsis, and the data for the selected anime.</p>
+
+
+
+              <p class="title" style="font-size: 18px; margin: 15px; font-weight: lighter; line-height: 30px; margin-left: 40px"><i class="fas fa-brush"></i> Genre Brushing</p>
+
+
+              <p class="title" style="font-size: 15px; margin: 15px; font-weight: lighter; line-height: 25px; margin-left: 65px">Double clicking on a leaf will focus on other leaves that share the same first genre.</p><br/>
+              
+            </p>
+          </div>
+      </div>
+      <div class="column">
+        
+          <div class="level-right" style="padding: none; margin-bottom: none">
+            <p class="subtitle" style="font-size: 20px; font-family: 'Georgia'; padding-top: 20px; padding-right: 10px">Select Year Range:</p>
+             <div class="select" style="margin-top: none; padding-top: none">
+              <select id="selectYear" onchange="update(value)">
+                <option value="1986-1999">1986-1999</option>
+                <option value="2000-2004">2000-2004</option>
+                <option value="2005-2007">2005-2007</option>
+                <option value="2008-2010">2008-2010</option>
+                <option value="2011-2013">2011-2013</option>
+                <option value="2014-2016">2014-2016</option>
+                <option value="2017-2019">2017-2019</option>
+              </select>
+            </div>
+          </div> 
+       
+       
+        <svg id="beta" width="600" height="600"></svg>
+          <div class="columns">
+            <div class="column" style="margin-left: 50px">
+              <p class="subtitle" style="font-size: 20px; font-family: 'Georgia'; padding-top: 30px">Set Color By: </p>
+               <div class="control" style="margin: 20px">
+                <form id="color_choices">
+                  <label class="radio">
+                    <input type="radio" name="mode" value="ratings" checked="checked">
+                    Ratings
+                  </label>
+                  <br/>
+                  <br/>
+                  <label class="radio">
+                    <input type="radio" name="mode" value="gender">
+                    Gender Popularity
+                  </label>
+                  <br/>
+                  <br/>
+                  <label class="radio">
+                    <input type="radio" name="mode" value="age">
+                    Age Group
+                  </label>
+                  </form>  
+              </div>
+            </div>
+           <div class="column" align="left">
+             <svg id="legend" width="400" height="250" style="margin-top: 60px"></svg>
+           </div>
+          </div> 
+      </div>
+    </div>
+     
+     <script src="beta.js"></script>
+
+
+     <section style="margin-top: 50px">
+        <p class="title" style="font-size: 45px">Conclusions </p>
+       <!--  <p class="subtitle" style="font-size: 25px">Are there any Trends between the Highest Rated Animes?</p>
+        <p class="subtitle" style="font-family: 'Georgia'; font-size: 20px; line-height: 35px"> With the graph we can compare multiple factors a once and notice some patterns with animes with higher scores and ranks.<br/> -->
+         
+          </p>
+          <ul style="list-style-type: square; margin-left: 50px; font-family: 'Georgia'; font-size: 16px; line-height: 30px">
+            <li>The year 2016 has the most Top 100 animes based on popularity and overall score.</li>
+            <li>The year 2014 has the most Top 100 ranked animes and Top 100 popular animes.</li>
+            <li>The year 2011 has the most favorites.</li>
+          </ul>
+      </section>
+
+
+     <span class="heading" style="font-size: 12px; margin-top: 50px">Acknowledgements</span>
+
+     
+        <div class="level">
+          <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@d3/force-directed-tree">Force-Directed Tree</a></p>
+              <p class="subtitle" style="font-size: 12px">By Mike Bostock</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/java-11-api-hierarchy-data-wrangling">Java 11 API Hierarchy - <br/> Data Wrangling</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/java-11-api-hierarchy-visualization">Java 11 API Hierarchy - <br/> Visualization</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="https://bulma.io/images/placeholders/32x32.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://blockbuilder.org/sjengle/1d673a35f2cb304c572a137277d3d150">SF Arrests Lab Template</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 15px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/interactivity">Interactivity</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+       </div>
+
+       <div class="level">
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="https://bulma.io/images/placeholders/32x32.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://bl.ocks.org/patiencehaggin/ffc6522a844cea9f0712282ba6d3cbeb">Single country with dropdown & radio buttons</a></p>
+              <p class="subtitle" style="font-size: 12px">By patiencehaggin</p>
+            </div>
+          </div>
+         </div>
+
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\stack.jpg">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://bl.ocks.org/patiencehaggin/ffc6522a844cea9f0712282ba6d3cbeb">D3: display graph in tooltip</a></p>
+              <p class="subtitle" style="font-size: 12px">Answered By saikiran.vsk</p>
+            </div>
+          </div>
+         </div>
+
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="https://bulma.io/images/placeholders/32x32.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://bl.ocks.org/maelafifi/ee7fecf90bb5060d5f9a7551271f4397">finalChoro</a></p>
+              <p class="subtitle" style="font-size: 12px">By Mohamed Elafifi</p>
+            </div>
+          </div>
+         </div>
+
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\git.svg">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://github.com/alangrafu/radar-chart-d3">Radar Chart</a></p>
+              <p class="subtitle" style="font-size: 12px">By alangrafu</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\d3.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://www.d3-graph-gallery.com/graph/pie_basic.html">Most basic pie chart in d3.js</a></p>
+              <p class="subtitle" style="font-size: 12px">By Yan Holtz</p>
+            </div>
+          </div>
+         </div>
+
+
+       </div>
+       </div>
+       
+     </div>
+
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <!-- Page footer -->
+  <!-- https://bulma.io/documentation/layout/footer/ -->
+  <footer class="footer">
+    <div class="content has-text-centered is-size-7">
+      <p>
+        <a href="#top">
+          <span class="fas fa-arrow-up"></span>
+          <span class="has-text-weight-medium">Back to Top</span>
+        </a>
+      </p>
+
+      <p>
+        <!-- TODO: Change to link to your Github repository -->
+        <a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+        </a>
+
+        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
+        </a>
+
+        <a href="https://bulma.io" class="button is-small">
+          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
+        </a>
+      </p>
+    </div>
+  </footer>
+  <!-- End page footer -->
+
+  <!-- Mobile menu responsiveness -->
+  <!-- https://bulma.io/documentation/components/navbar/ -->
+  <script>
+
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      /* Toggle between adding and removing the "active" class,
+      to highlight the button that controls the panel */
+      this.classList.toggle("active");
+
+      /* Toggle between hiding and showing the active panel */
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+
+  function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+  </script>
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

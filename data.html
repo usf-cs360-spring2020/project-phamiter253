@@ -55,20 +55,28 @@
           </a>
 
           <!-- TODO: Modify or remove dropdown -->
-          <div class="navbar-item has-dropdown is-hoverable">
+         <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               Visualizations
             </a>
 
             <div class="navbar-dropdown">
-              <a class="navbar-item" href="prototype.html">
+              <a class="navbar-item" href="alpha.html">
                 <span class="icon"><i class="fas fa-chart-line"></i></span>
-                <span>Prototype Implementation</span>
+                <span>Alpha Release Prototype</span>
               </a>
-              <a class="navbar-item" href="final.html">
+              <a class="navbar-item" href="beta.html">
                 <span class="icon"><i class="fas fa-chart-area"></i></span>
+                <span>Beta Release Prototype</span>
+              </a>
+
+              <hr class="navbar-divider">
+
+              <a class="navbar-item" href="final.html">
+                <span class="icon"><i class="fas fa-chart-bar"></i></span>
                 <span>Final Implementation</span>
               </a>
+
             </div>
           </div>
         </div>
@@ -416,14 +424,16 @@
                   </p>
                   <ul class="menu-list" style="list-style: none; padding: none; margin: none">
                     <li><a href="#add">Creating New Columns</a></li>
-                    <li><a href="#format">Converting to JSON</a></li>
+                    <li><a href="#remove">Filtering & Removing Columns</a></li>
+                    <li><a href="#no-dups">Removing Duplicates from CSV</a></li>
                   </ul>
                   <p class="menu-label">
                     Java
                   </p>
                   <ul class="menu-list" style="list-style: none">
-                    <li><a href="#json">Converting to nested JSON</a></li>
+                    <li><a href="#json">Converting to JSON</a></li>
                     <li><a href="#duplicates">Removing Duplicate JSON Objects</a></li>
+                    
                   </ul>
                 </aside>
                 
@@ -482,74 +492,63 @@
 
 </pre>
 
-<br id="format"/>
-<br/>
-<br/>
-<br/>
-
-<p class="title">Converting to JSON format</p>
-<pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
-
-
-      def collectYears(input):
-        optionYears = {}
-        yrtwenty = []
-        
-        with open(input) as csvfile:
-          csv = reader(csvfile) # change contents to floats
-          for row in csv: # each row is a list
-            if row[12] == '2007':
-              yrtwenty.append(row[0])
-            
-        return yrtwenty
 
 
 
-      data = pd.read_csv(newanimelist)
-      #filtered = filter(lambda d: '2007' == d[12], data)
-      #writer(open("2007-animes.csv", 'w')).writerows(filtered)
+                <br id="remove"/>
+                <br/>
+                <br/>
+                <br/>
 
-      class NpEncoder(json.JSONEncoder):
-          def default(self, obj):
-              if isinstance(obj, np.integer):
-                  return int(obj)
-              elif isinstance(obj, np.floating):
-                  return float(obj)
-              elif isinstance(obj, np.ndarray):
-                  return obj.tolist()
-              else:
-                  return super(NpEncoder, self).default(obj)
+                <p class="title">Filtering & Removing Columns<sup><a href="#fn2">2</a></sup></p>
+                <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
 
 
-      def collectGenres(key, grp):
-        options = {}
-        option = {}
-        for year in ['0']:
-          years = list(grp[year].unique())
-          option['Year'] = years[0] 
-          option['Anime_Id'] = key[0]
-          option['Title'] = key[1]
-          option['Summary'] = key[2]
-          option['Genres'] = key[3]
-          option['Aired_String'] = key[4]
-          option['Number_Episodes'] = key[5]
-          option['Rank'] = key[6]
-          option['Score'] = key[7]
-          option['Image'] = key[8]
-          option['Main_Genre'] = key[9]
+      with open('C:\\Users\\cilla\\fout.csv', 'r') as fin, open('reviews.csv', 'w', newline='') as fout:
 
-        options[option['Year']] = option    
-        return option
+      # define reader and writer objects
+      csv_reader = reader(fin, skipinitialspace=True)
+      csv_writer = writer(fout, delimiter=',')
 
-      records = []
-      for key, grp in data.groupby(['uid', 'title', 'synopsis', 'genres', 'aired',
-       'episodes', 'ranked', 'score', 'img_url', 'genre']):
-        options = collectGenres(key, grp)
-        records.append(options)
-        
-      records = dict(data = records)
+      # write headers
+      csv_writer.writerow(next(csv_reader))
 
-      file.write(json.dumps(records, indent= 4, cls=NpEncoder))
+      # iterate and write rows based on condition
+      for i in csv_reader:
+        if i[-4] == 'Male' or i[-4] == 'Female':
+          csv_reader.writerow(i)
+        if i[-3] != '':
+          str = re.search(r'\d{4}', i[-3])
+          if str:
+            i[-3] = 2020 - int(str.group())
+            csv_writer.writerow(i)
+        if i[-2] != '[]':
+          csv_writer.writerow(i)
+
+    f = pd.read_csv("fout7.csv")
+    keep_col = ['profile','gender','birthday','favorites_anime']
+    new_f = f[keep_col]
+    new_f.to_csv("newFile.csv", index=False)
+
+
+                </pre>
+
+                <br id="no-dups"/>
+                <br/>
+                <br/>
+                <br/>
+
+                <p class="title">Removing Duplicates from CSV<sup><a href="#fn3">3</a></sup></p>
+                <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
+                  
+
+      rows = reader(open("reviews-greater86.csv", "r", encoding="utf8"))
+      newrows = []
+      for row in rows:
+          if row not in newrows:
+              newrows.append(row)
+      csv_writer = writer(open("reviewss-greater86-nodups.csv", "w", newline='', encoding="utf8"))
+      csv_writer.writerows(newrows)
 
 
                 </pre>
@@ -560,16 +559,64 @@
                 <br/>
 
               <p class="subtitle">JavaScript</p>
-              <p class="title" >Converting to Nested JSON Hierarchy<sup><a href="#fn2">2</a></sup></p>
+              <p class="title" >Converting to Nested JSON Hierarchy<sup><a href="#fn4">4</a></sup></p>
               <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
 
 
-      var hierarchy = d3.nest()
-      .key(function(d) { return d.year; })
-      .key(function(d) { return d.genre; })
-      .entries(data);
+      function buildHierarchy(csv){
+        years = [...new Set(csv.map(d => d.year))].sort();
+          main_genre = [...new Set(csv.map(d => d.genre + "#" +d.year))]
+          other_genres = [...new Set(csv.map(d => d.genres + "#" + d.genre + "#" + d.year))]
 
-      var stuff = (JSON.stringify(hierarchy));
+          years.forEach( e => {
+          var year = {
+            name: e,
+            id: e,
+            parent: "Anime Database"
+          };
+          data.push(year);
+        });
+
+          csv.forEach(row => {
+            anime = {
+              name: row.title,
+              id: row.title,
+              uid: row.uid,
+              synopsis: row.synopsis,
+              genres: row.genres,
+              aired: row.aired,
+              episodes: row.episodes,
+              members: row.members,
+              popularity: row.popularity,
+              rank: row.ranked,
+              score: row.score,
+              img: row.img_url,
+              genre: row.genre,
+              parent: row.year
+            }
+            data.push(anime);
+          });
+
+          root = d3.stratify()
+          .id(function(row) { return row.name; })
+          .parentId(function(row) {
+            return row.parent;
+          })
+          (data);
+
+        root.count()
+        
+        root.each(function(node) {
+          node.data.leaves = node.value;
+        })
+
+        root.sum(row => row.size)
+
+        root.each(function(node) {
+          node.data.total = node.value;
+        })
+          buildForce(root);
+      }
 
 
             </pre>
@@ -579,7 +626,7 @@
             <br/>
             <br/>
 
-            <p class="title">Removing Duplicates JSON Objects<sup><a href="#fn3">3</a></sup></p>
+            <p class="title">Removing Duplicates JSON Objects<sup><a href="#fn5">5</a></sup></p>
             <pre style="font-family: 'Courier'; font-size: 12px; width: 80%">
                   
 
@@ -604,15 +651,7 @@
         // Loop to push unique object into array 
         for (i in uniqueObject) { 
             newArray.push(uniqueObject[i]); 
-        } 
-          
-        var hierarchy = d3.nest()
-          .key(function(d) { return d.year; })
-          .key(function(d) { return d.genre; })
-          .key(function(d) { return d.genres; })
-          .entries(newArray);
-        // Display the unique objects 
-        console.log(hierarchy); 
+        }  
       }
 
       removeDuplicates(data);
@@ -623,10 +662,12 @@
                 <br/>
                 <hr style="width: 80%"></hr>
 
-              <p class="subtitle" style="font-family: 'Georgia'; width: 80%">1. 
-                <a id="fn1" href="https://thispointer.com/python-add-a-column-to-an-existing-csv-file/">thispoint.com - Add a list as a colmun to an exisitng csv file</a><br/>
-                2. <a id="fn2" href="http://learnjsdata.com/group_data.html">Learn JS Data - Grouping Data</a><br/>
-                3. <a href="https://www.geeksforgeeks.org/how-to-remove-duplicates-from-an-array-of-objects-using-javascript/">GeeksforGeeks - How to remove duplicates from an array of objects using JavaScript?</a>
+              <p class="subtitle" style="font-family: 'Georgia'; width: 80%">1. thispoint.com - 
+                <a id="fn1" href="https://thispointer.com/python-add-a-column-to-an-existing-csv-file/">Add a list as a colmun to an exisitng csv file</a><br/>
+                2. Stack Overflow - <a id="fn2" href=https://stackoverflow.com/questions/7588934/how-to-delete-columns-in-a-csv-file">How to delete columns in a CSV file?</a> & <a href="https://stackoverflow.com/questions/50623009/delete-rows-in-csv-based-on-specific-column-value-python"> delete rows in csv based specific column value python</a><br/>
+                3. Bytes - <a id="fn3" href="https://bytes.com/topic/python/answers/738404-removing-duplicate-entries-csv-file-using-python-script">Removing duplicate entries in a csv file using a python script, KaezarRex</a>
+                4. Observable - <a id="fn4" href="https://observablehq.com/@sjengle/java-11-api-hierarchy-data-wrangling">Java 11 API Hierarchy - Data Wrangling</a><br/>
+                5. GeeksforGeeks - <a id="fn5" href="https://www.geeksforgeeks.org/how-to-remove-duplicates-from-an-array-of-objects-using-javascript/">How to remove duplicates from an array of objects using JavaScript?</a>
               </p>
               </div>
 

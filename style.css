@@ -1,3 +1,36 @@
+div.tooltip {
+  color: black;
+  position: absolute;
+  text-align: center;
+  padding: 12px;
+  font: 12px sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  border-radius: 2.5px;
+}
+
+div.tooltip1 {
+  background-color: black; 
+  position: absolute;
+  text-align: center;
+  padding: 12px;
+  font: 12px sans-serif;
+  pointer-events: none;
+  border-radius: 6px;
+  color: #000;
+}
+
+.tooltip1::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
 .title{
 	font-family: 'Georgia';
 }
@@ -8,88 +41,70 @@
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1); 
 }
 
-:root {
-  --square-size: 15px;
-  --square-gap: 5px;
-  --week-width: calc(var(--square-size) + var(--square-gap));
+* {box-sizing:border-box}
+
+.flip-box {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-.months { grid-area: months; }
-.days { grid-area: days; }
-.squares { grid-area: squares; }
-
-.graph {
-  display: inline-grid;
-  grid-template-areas: "empty months"
-                       "days squares";
-  grid-template-columns: auto 1fr;
-  grid-gap: 10px;
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.months {
-  display: grid;
-  grid-template-columns: calc(var(--week-width) * 4) /* Jan */
-                         calc(var(--week-width) * 4) /* Feb */
-                         calc(var(--week-width) * 4) /* Mar */
-                         calc(var(--week-width) * 5) /* Apr */
-                         calc(var(--week-width) * 4) /* May */
-                         calc(var(--week-width) * 4) /* Jun */
-                         calc(var(--week-width) * 5) /* Jul */
-                         calc(var(--week-width) * 4) /* Aug */
-                         calc(var(--week-width) * 4) /* Sep */
-                         calc(var(--week-width) * 5) /* Oct */
-                         calc(var(--week-width) * 4) /* Nov */
-                         calc(var(--week-width) * 5) /* Dec */;
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
 }
 
-.days,
-.squares {
-  display: grid;
-  grid-gap: var(--square-gap);
-  grid-template-rows: repeat(7, var(--square-size));
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
 
-.squares {
-  grid-auto-flow: column;
-  grid-auto-columns: var(--square-size);
+/* Style the front side */
+.flip-box-front {
+  color: black;
 }
 
-
-/* Other styling */
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 12px;
+/* Style the back side */
+.flip-box-back {
+  transform: rotateY(180deg);
 }
 
-.graph {
-  padding: 20px;
-  border: 1px #e1e4e8 solid;
-  margin: 20px;
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
 }
 
-.days li:nth-child(odd) {
-  visibility: hidden;
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
 }
 
-.squares li {
-  background-color: #ebedf0;
-}
-
-.squares li[data-level="1"] {
-  background-color: #c6e48b;
-}
-
-.squares li[data-level="2"] {
-  background-color: #7bc96f;
-}
-
-.squares li[data-level="3"] {
-  background-color: #196127;
-}
-
-#list  p {
-    font: arial;
-    font-size: 14px;
-    background-color: yellow ;
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: block;
+  overflow: hidden;
 }
