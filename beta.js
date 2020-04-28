@@ -514,7 +514,7 @@ function buildForce(data) {
 	   			<span style="font-size: 15px"><strong>${d.data.data.rank}</strong></span>
 	   			</p>
 	   			<p style="font-family: 'Palatino Linotype'">
-	   			Score:<br/>
+	   			Popularity:<br/>
 	   			<span style="font-size: 15px"><strong>${d.data.data.popularity}</strong></span><br/>
 	   			</p>
 	   		</div>
