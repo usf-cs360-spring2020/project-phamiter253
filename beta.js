@@ -441,7 +441,7 @@ function buildForce(data) {
       		return "none";
       	}
       })
-      .attr("r", d => d.children ? 5 * d.data.height : 5)
+      .attr("r", d => d.children ? 5 * d.data.height + 1 : 5)
       .call(drag(simulation))
       .style("cursor", "pointer")
                     .on("click", animeInfo)
@@ -582,7 +582,8 @@ function buildForce(data) {
 					  <span class="tag">${e}</span>
 					  `
      	})
-     	node.attr("r", e => e != d ? 5 : 10);
+     	kids = node.filter(e => (!e.children));
+     	kids.attr("r", e => e != d ? 5 : 10);
         const html = `
         <div class="content" style="padding: 30px">
 			<div class="columns">
