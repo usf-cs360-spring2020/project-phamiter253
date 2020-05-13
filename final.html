@@ -104,19 +104,305 @@
   <section class="section">
     <div class="container">
       <!-- Begin page content -->
-     
-      <div class="level">
-        <p class="title" style="padding-left: 200px"> This Page is Under Construction</p>
-        <figure>
-          <img src="assets/cont.png" style="width: 300px; height: 300px" align="middle">
-        </figure>
-      </div>
-      
-      
 
+     <p class="title" style="font-size: 50px; margin-top: 40px">Above & Lowest Rated Animes</p>
+     <p class="subtitle">
+      The amount of Above average and Below average rated animes that premiered in the years between 1986 and 2019 are visualized.</p><br/>
+
+      <div id="stacked" class="level">
+        <div class="columns">
+          <div class="column">
+            <form id="bar_choices">
+              <label class="radio">
+                <input type="radio" name="mode" value="stack" checked="checked">
+                Stacked Bars
+              </label>
+              <label class="radio">
+                <input type="radio" name="mode" value="bar" onclick="">
+                Grouped Bars
+              </label>
+            <svg id="stackbar" width="1000" height="500"></svg>
+
+          </div>
+
+          <div class="column is-one-quarter">
+            <p id="BarsInfo"></p>
+          </div>
+        </div>
+      </div>
+      <script src="stacked-bar.js"></script>
+
+      <div class="columns">
+        <div class="column" style="padding: 30px">
+          <p class="title">
+            Interactivity
+          </p>
+          <ul>
+            <li><p class="title" style="font-size: 20px; font-weight: normal;"><i class="far fa-dot-circle"></i> Stacked vs Grouped Bars</p>
+            </li>
+              <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Change the bar graph layout with the raido buttons at the top.</p>
+            <li>
+              <p class="title" style="font-size: 20px; font-weight: normal;"><i class="fas fa-ruler-combined"></i>  Reference Line with Value</p>
+            </li>
+              <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Mouseover any bar to display reference line and the corresponding value for that bar.</p>
+            <li><p class="title" style="font-size: 20px;font-weight: normal;"><i class="fas fa-brush"></i> Brushing Ratings</p></li>
+            <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Mouseover any bar to highlight bars of the same subgroup.</p>
+
+            <li><p class="title" style="font-size: 20px;font-weight: normal;"><i class="fas fa-info-circle"></i> On Demand Details</p></li>
+            <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Click on any bar and display the highest and lowest rated anime that premiered that year.</p>
+          </ul>
+            
+        </div>
+        <div class="column" style="padding: 30px">
+          <p class="title">
+            Encodings
+          </p>
+          <p class="title" style="font-size: 20px; margin-bottom: 10px;font-weight: normal;">Categorical Colors</p>
+          <div class="level-left">
+            <div class="level-left">
+              <svg width="30" height="20">
+                <rect width="20" height="20" style="fill:#77dd77">
+              </svg>
+              <p style="padding-right:20px">Above Average</p>
+            </div>
+
+            <div class="level-left">
+              <svg width="30" height="20">
+                <rect width="20" height="20" style="fill:#d83c2d">
+              </svg>
+              <p>Below Average</p>
+            </div>
+          </div>
+
+          <p style="font-family: 'Georgia'; margin-top: 10px">Average ratings for this dataset is &asymp; 6.43</p>
+          <p class="title" style="font-size: 20px; margin-bottom: 10px"></p>
+
+          <p class="title" style="font-size: 20px; margin-bottom: 10px;font-weight: normal;">Discrete Totals</p>
+          <p style="font-family: 'Georgia'">The height of the bars of represent the total amount of either Above Average or Below Average animes for each year.</p>
+
+          <p class="title" style="font-size: 20px; margin-bottom: 10px; margin-top: 10px;font-weight: normal;">Categorical Years</p>
+          <p style="font-family: 'Georgia'">Each year represents the year an anime was released.</p>
+
+        </div>
+          
+        <div class="column" style="padding: 30px">
+          <p class="title">
+              Observations
+            </p>
+            <p>
+              The amount of anime released each year increased almost each year.<br/>
+              In the <strong>late 90s and early 2000s</strong>, the majority of anime was rated average above average, especially in 2007. <br/>
+              I was expecting each year's highest rated anime to be recognizable, but <strong>early years like 1990, 1991, and 1994</strong> have less popular animes as their highest rated anime.<br/>
+              The highest rated animes all have multiple genres listed and some of them are common and generic like <strong>Comedy, Action, Drama</strong> while the lowest rated anime have at most three genres and the most common genres are <strong>Music, Horror, and Dementia</strong>.<br/>
+            </p>
+        </div>
+      </div>
+
+
+      <hr style="margin-bottom: 100px"></hr>
+      <p class="title" style="font-size: 50px; margin-top: 40px; padding-left: 100px">Top 100 & Bottom 100</p>
+       <p class="subtitle" style="margin-left: 100px; margin-bottom: 0px">200 of the Highest Rated & Lowest Rated Anime that premiered between 1986 and 2019</p>
+
+        <div id="force" class="level" style="margin: 100px; margin-top: 0px; margin-bottom: 0px">
+
+        <div class="columns">
+
+          <div class="column" style="padding-bottom: 0px; padding-top: 50px; padding-right: 20px">
+            <p id="anime_info"></p>
+
+            <div id="move">
+              <p class="title">
+              Interactivity
+              </p>
+              <ul>
+                <li><p class="title" style="font-size: 20px"><i class="fas fa-tools"></i> Overview Tooltips</p></li>
+                <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Mouseover a node to see the general information about the anime, including its title, rank, popularity and poster image.</p>
+                <li><p class="title" style="font-size: 20px"><i class="fas fa-info-circle"></i> Individual Anime Information & Stats</p></li>
+                <p style="font-size: 15px; margin-left: 20px; margin-bottom: 20px">Click on the node to display more infomration about the anime and the ratings collected from the reviews. The selected anime node will be slightly bigger.</p>
+              </ul>
+              <hr style="margin: 60px"></hr>
+              <p class="title">
+                Encodings
+              </p>
+
+              <p class="title" style="font-size: 20px; margin-bottom: 10px;font-weight: normal;">Color Ranges</p>
+
+              <p style="font-family: 'Georgia'">Green Nodes are darker if the anime's score is greater.</p> 
+              <div class="level-left">
+                <svg width="30" height="20">
+                  <rect width="20" height="20" style="fill:rgb(36, 141, 70);">
+                </svg>
+                <p style="padding-right:20px"> &asymp; 9.3</p>
+
+                <svg width="30" height="20">
+                  <rect width="20" height="20" style="fill:rgb(208, 237,202)";>
+                </svg>
+                <p> &asymp; 8.3</p>
+              </div>
+                
+
+              <p style="font-family: 'Georgia'">Red nodes are darker if the score is lower.</p>
+
+              <div class="level-left">
+                <svg width="30" height="20">
+                  <rect width="20" height="20" style="fill:rgb(253, 201, 179);">
+                </svg>
+                <p style="padding-right:20px"> &asymp; 4.5</p>
+                <svg width="30" height="20">
+                  <rect width="20" height="20" style="fill:rgb(128, 6, 16);">
+                </svg>
+                <p> &asymp; 1</p>
+              </div>
+              <p style="font-family: 'Georgia'">Nodes with black strokes are apart of the top 100 based on popularity</p>
+
+              <p class="title" style="font-size: 20px; margin-bottom: 10px; margin-top: 20px;font-weight: normal;">Links</p>
+              <p style="font-family: 'Georgia'">Anime nodes or the leaves, are connected to the year when they were released. The parent nodes are labeled with the last two digits for that year</p>
+            </div>
+          </div>
+            
+          <div class="column" align="center" style="margin-top: 50px">
+            <svg id="tree" width="600" height="600"></svg>
+            <p class="title" id="forceTitle" style="font-size: 15px"></p>
+          </div>
+        </div>
+
+      </div>
+
+   <div id="change"></div>
+
+    <div class="container">
+      <div style="margin-top: 70px">
+        <hr></hr>
+        <span class="heading" style="font-size: 12px;">Acknowledgements</span>
+          <div class="level">
+            <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@d3/force-directed-tree">Force-Directed Tree</a></p>
+              <p class="subtitle" style="font-size: 12px">By Mike Bostock</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/java-11-api-hierarchy-data-wrangling">Java 11 API Hierarchy - <br/> Data Wrangling</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/java-11-api-hierarchy-visualization">Java 11 API Hierarchy - <br/> Visualization</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="https://bulma.io/images/placeholders/32x32.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://blockbuilder.org/sjengle/1d673a35f2cb304c572a137277d3d150">SF Arrests Lab Template</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+
+         <div class="card" style="padding: 15px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@sjengle/interactivity">Interactivity</a></p>
+              <p class="subtitle" style="font-size: 12px">By Sophie Engle</p>
+            </div>
+          </div>
+         </div>
+       </div>
+
+       <div class="level">
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="https://bulma.io/images/placeholders/32x32.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://bl.ocks.org/patiencehaggin/ffc6522a844cea9f0712282ba6d3cbeb">Single country with dropdown & radio buttons</a></p>
+              <p class="subtitle" style="font-size: 12px">By patiencehaggin</p>
+            </div>
+          </div>
+         </div>
+
+
+         <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\stack.jpg">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://bl.ocks.org/patiencehaggin/ffc6522a844cea9f0712282ba6d3cbeb">D3: display graph in tooltip</a></p>
+              <p class="subtitle" style="font-size: 12px">Answered By saikiran.vsk</p>
+            </div>
+          </div>
+         </div>
+  
+        <div class="card" style="padding: 10px; margin: 10px">
+          <div class="media">
+            <div class="media-left">
+               <figure class="image is-32x32">
+                 <img src="assets\o.png">
+               </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-6"><a href="https://observablehq.com/@kerryrodden/stacked-to-grouped-bars-o-matic">Stacked-to-Grouped-Bars-o-Matic</a></p>
+              <p class="subtitle" style="font-size: 12px">By Kerry Rodden</p>
+            </div>
+          </div>
+         </div>
+
+      </div>
+
+  <script src="trees.js"></script>
+
+
+      
       <!-- End page content -->
     </div>
+
+
   </section>
+
+  
 
   <!-- Page footer -->
   <!-- https://bulma.io/documentation/layout/footer/ -->
@@ -150,20 +436,35 @@
   <!-- Mobile menu responsiveness -->
   <!-- https://bulma.io/documentation/components/navbar/ -->
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-    if ($navbarBurgers.length > 0) {
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
-      });
+    function openTab(evt, tabName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("content-tab");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
     }
-  });
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " is-active";
+  }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+    });
   </script>
   <!-- End mobile menu responsiveness -->
   </body>
